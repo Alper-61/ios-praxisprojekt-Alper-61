@@ -11,6 +11,7 @@ Egal ob du einfach nur informiert bleiben oder deine Lieblingsspiele im Auge beh
   <img src="./img/LogIn.png" width="200">
   <img src="./img/Home.png" width="200">
   <img src="./img/Favoriten.png" width="200">
+  <img src="./img/Community.png" width="200">
 </p>
 
 ## Features
