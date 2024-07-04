@@ -1,6 +1,6 @@
 # AnyGame
 
-**Stay Connected – Die ultimative App für Gaming-News und -Updates**
+Dein Tor zur Gaming-Welt – Immer aktuell, immer vernetzt
 
 AnyGame bietet eine umfassende Plattform für Gaming-Enthusiasten, um die neuesten Nachrichten und Updates zu ihren Lieblingsspielen zu erhalten. Mit einer benutzerfreundlichen Oberfläche und einer Vielzahl an Funktionen, die die Interaktion und Personalisierung ermöglichen, hebt sich AnyGame von anderen Apps ab. 
 
@@ -21,6 +21,7 @@ Hier kommen alle geplanten Features der App rein mit dem Status, ob es bereits u
 - [ ] **GameView**: Zeigt eine Übersicht aller Spiele-News in einer Liste und im oberen Bereich einige hervorgehobene Spiele, durch die horizontal gescrollt werden kann. Außerdem enthält sie eine Such- und Filterfunktion.
 - [ ] **GameDetailView**: Zeigt detaillierte Informationen zu einem ausgewählten Spiel an, einschließlich Nachrichten und Beschreibungen, und ermöglicht es, das Spiel zu favorisieren.
 - [ ] **FavoriteGameView**: Zeigt die favorisierten Spiele an und ermöglicht das Löschen von Favoriten.
+- [ ] **CommunityView**: Ermöglicht Benutzern, sich untereinander auszutauschen, Kommentare zu Spielen und Nachrichten zu hinterlassen und Diskussionen zu führen.
 - [ ] **ProfileView**: Zeigt das Profil des Benutzers an, ermöglicht das Bearbeiten persönlicher Informationen und das Ausloggen.
 
 ## Technischer Aufbau
@@ -46,7 +47,7 @@ Das Projekt folgt dem MVVM (Model-View-ViewModel) Architekturprinzip. Die Haupto
 - **SwiftUI**: Für die Gestaltung der Benutzeroberfläche.
 
 ## Ausblick
-In Zukunft möchte ich eine Community-Funktion integrieren, die es den Benutzern ermöglicht, sich untereinander auszutauschen und zu vernetzen. Diese Funktion wird es den Benutzern ermöglichen, Kommentare zu Spielen und Nachrichten zu hinterlassen und Diskussionen zu führen. Weitere geplante Features werden als Issues erstellt und können dort verfolgt werden.
+In Zukunft möchte ich weitere Features für die Community-Funktion integrieren, die es den Benutzern ermöglichen, sich noch besser auszutauschen und zu vernetzen. Dazu gehören erweiterte Diskussionsforen, Direktnachrichten zwischen Benutzern und Events, bei denen Benutzer ihre Erfahrungen teilen können.
 
 
  
