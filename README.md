@@ -40,7 +40,7 @@ Das Projekt folgt dem MVVM (Model-View-ViewModel) Architekturprinzip. Die Haupto
 - **Core Data**: Für das lokale Speichern von favorisierten Spielen und anderen persistenten Daten.
 
 #### API Calls
-- **RAWG API**: ](https://api.rawg.io/docs/?format=openapi).
+- **RAWG API**: (https://api.rawg.io/docs/?format=openapi).
 
 #### 3rd-Party Frameworks
 - **Firebase Authentication**: Für Benutzeranmeldung und -registrierung.
