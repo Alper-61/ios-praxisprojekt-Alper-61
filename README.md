@@ -11,9 +11,9 @@ Vermeide es, hier allzusehr in technische Details zu gehen.
 Füge hier einige repräsentative Designs deiner App ein (z.B. aus Figma).
 Wenn deine App dann so weit ist, dass du echte Screenshots machen kannst, solltest du diese hier einsetzen.
 <p>
-  <img src="./img/app_design_1.png" width="200">
-  <img src="./img/app_design_2.png" width="200">
-  <img src="./img/app_design_3.png" width="200">
+  <img src="./img/LogIn.png" width="200">
+  <img src="./img/Home.png" width="200">
+  <img src="./img/Favoriten.png" width="200">
 </p>
 
 
