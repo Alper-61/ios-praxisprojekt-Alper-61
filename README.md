@@ -1,45 +1,54 @@
-# Name der App
+# AnyGame
 
-**(Optional) Füge hier einen kurzen, knackigen Slogan ein, um deine App zu bewerben.**
+Dein Tor zur Gaming-Welt – Immer aktuell, immer vernetzt
 
-Beschreibe hier in ein paar Sätzen, was deine App bietet.
+AnyGame bietet eine umfassende Plattform für Gaming-Enthusiasten, um die neuesten Nachrichten und Updates zu ihren Lieblingsspielen zu erhalten. Mit einer benutzerfreundlichen Oberfläche und einer Vielzahl an Funktionen, die die Interaktion und Personalisierung ermöglichen, hebt sich AnyGame von anderen Apps ab. 
 
-Für wen ist sie geeignet? Welches Problem löst sie? Was macht deine App anders / besser als andere Apps?
-Vermeide es, hier allzusehr in technische Details zu gehen.
+Egal ob du einfach nur informiert bleiben oder deine Lieblingsspiele im Auge behalten möchtest, AnyGame bietet dir alles, was du brauchst, an einem Ort.
 
 ## Geplantes Design
-Füge hier einige repräsentative Designs deiner App ein (z.B. aus Figma).
-Wenn deine App dann so weit ist, dass du echte Screenshots machen kannst, solltest du diese hier einsetzen.
 <p>
   <img src="./img/LogIn.png" width="200">
   <img src="./img/Home.png" width="200">
   <img src="./img/Favoriten.png" width="200">
+  <img src="./img/Community.png" width="200">
 </p>
-
 
 ## Features
 Hier kommen alle geplanten Features der App rein mit dem Status, ob es bereits umgesetzt wurde.
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] ...
-
+- [ ] **LoginView**: Ermöglicht Benutzern die Anmeldung über Firebase-Authentifizierung.
+- [ ] **RegisterView**: Ermöglicht Benutzern die Registrierung über Firebase-Authentifizierung.
+- [ ] **GameView**: Zeigt eine Übersicht aller Spiele-News in einer Liste und im oberen Bereich einige hervorgehobene Spiele, durch die horizontal gescrollt werden kann. Außerdem enthält sie eine Such- und Filterfunktion.
+- [ ] **GameDetailView**: Zeigt detaillierte Informationen zu einem ausgewählten Spiel an, einschließlich Nachrichten und Beschreibungen, und ermöglicht es, das Spiel zu favorisieren.
+- [ ] **FavoriteGameView**: Zeigt die favorisierten Spiele an und ermöglicht das Löschen von Favoriten.
+- [ ] **CommunityView**: Ermöglicht Benutzern, sich untereinander auszutauschen, Kommentare zu Spielen und Nachrichten zu hinterlassen und Diskussionen zu führen.
+- [ ] **ProfileView**: Zeigt das Profil des Benutzers an, ermöglicht das Bearbeiten persönlicher Informationen und das Ausloggen.
 
 ## Technischer Aufbau
 
 #### Projektaufbau
-Eine kurze Beschreibung deiner Ordnerstruktur und Architektur (MVVM, Repositories?) um Außenstehenden zu helfen, sich in deinem Projekt zurecht zu finden.
+Das Projekt folgt dem MVVM (Model-View-ViewModel) Architekturprinzip. Die Hauptordnerstruktur umfasst:
+
+- **Models**: Enthält die Datenmodelle.
+- **Views**: Beinhaltet die SwiftUI-Views.
+- **ViewModels**: Enthält die Logik und Bindungen zwischen Modellen und Views.
+- **Services**: Beinhaltet die Integrationen wie Firebase.
 
 #### Datenspeicherung
-Welche Daten speicherst du? Wo und wie (Firebase, Core Data, etwas anderes)?
+- **Firebase**: Für die Authentifizierung und Speicherung von Benutzerinformationen.
+- **Core Data**: Für das lokale Speichern von favorisierten Spielen und anderen persistenten Daten.
 
 #### API Calls
-Welche APIs verwendest du?
+- **RAWG API**: (https://api.rawg.io/docs/?format=openapi).
 
 #### 3rd-Party Frameworks
-Verwendest du Frameworks, die nicht von dir stammen? Bspw. Swift Packages für Firebase, fertige SwiftUI-Views o.Ä.? Gib diese hier an.
-
+- **Firebase Authentication**: Für Benutzeranmeldung und -registrierung.
+- **Firebase Firestore**: Für die Speicherung und Verwaltung der Spieldaten und Benutzerinformationen.
+- **SwiftUI**: Für die Gestaltung der Benutzeroberfläche.
 
 ## Ausblick
-Beschreibe hier, wo die Reise nach deinem Praxisprojekt hin geht. Was möchtest du in Zukunft noch ergänzen? Erstelle auch hierzu Issues und verlinke sie, wie oben.
+In Zukunft möchte ich weitere Features für die Community-Funktion integrieren, die es den Benutzern ermöglichen, sich noch besser auszutauschen und zu vernetzen. Dazu gehören erweiterte Diskussionsforen, Direktnachrichten zwischen Benutzern und Events, bei denen Benutzer ihre Erfahrungen teilen können.
+
+
  
