@@ -16,6 +16,8 @@ struct GameDetailView: View {
         VStack {
             if viewModel.isLoading {
                 ProgressView("Loading...")
+                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                    .scaleEffect(1.5)
             } else if let game = viewModel.game {
                 ScrollView {
                     VStack(alignment: .leading) {
@@ -30,6 +32,8 @@ struct GameDetailView: View {
                                         .resizable()
                                         .scaledToFit()
                                         .frame(height: 200)
+                                        .cornerRadius(10)
+                                        .shadow(radius: 5)
                                 case .failure:
                                     Color.red
                                         .frame(height: 200)
@@ -43,53 +47,66 @@ struct GameDetailView: View {
                                 .frame(height: 200)
                         }
                         
-                        Text(game.name)
-                            .font(.largeTitle)
-                            .padding(.bottom, 10)
-                        
-                        if let released = game.released {
-                            Text("Released: \(released)")
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text(game.name)
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                            
+                            if let released = game.released {
+                                Text("Released: \(released)")
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+                            }
+                            
+                            Text("Rating: \(game.rating, specifier: "%.2f")")
                                 .font(.subheadline)
+                                .foregroundColor(.gray)
+                            
+                            if let metacritic = game.metacritic {
+                                Text("Metacritic: \(metacritic)")
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+                            }
+                            
+                            if let esrb = game.esrb_rating {
+                                Text("ESRB Rating: \(esrb.name)")
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+                            }
+                            
+                            if let publishers = game.publishers {
+                                Text("Publishers: \(publishers.map { $0.name }.joined(separator: ", "))")
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+                            }
+                            
+                            if let genres = game.genres {
+                                Text("Genres: \(genres.map { $0.name }.joined(separator: ", "))")
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+                            }
+                            
+                            if let platforms = game.platforms {
+                                Text("Platforms: \(platforms.map { $0.platform.name }.joined(separator: ", "))")
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+                            }
+                            
+                            if let description = game.description {
+                                Text(description)
+                                    .padding(.top, 10)
+                                    .foregroundColor(.white)
+                            }
+                            
+                            if let redditUrl = game.reddit_url, let url = URL(string: redditUrl) {
+                                Link("Reddit Discussion", destination: url)
+                                    .font(.headline)
+                                    .foregroundColor(.blue)
+                                    .padding(.top, 10)
+                            }
                         }
-                        
-                        Text("Rating: \(game.rating, specifier: "%.2f")")
-                            .font(.subheadline)
-                        
-                        if let metacritic = game.metacritic {
-                            Text("Metacritic: \(metacritic)")
-                                .font(.subheadline)
-                        }
-                        
-                        if let esrb = game.esrb_rating {
-                            Text("ESRB Rating: \(esrb.name)")
-                                .font(.subheadline)
-                        }
-                        
-                        if let publishers = game.publishers {
-                            Text("Publishers: \(publishers.map { $0.name }.joined(separator: ", "))")
-                                .font(.subheadline)
-                        }
-                        
-                        if let genres = game.genres {
-                            Text("Genres: \(genres.map { $0.name }.joined(separator: ", "))")
-                                .font(.subheadline)
-                        }
-                        
-                        if let platforms = game.platforms {
-                            Text("Platforms: \(platforms.map { $0.platform.name }.joined(separator: ", "))")
-                                .font(.subheadline)
-                        }
-                        
-                        if let description = game.description {
-                            Text(description)
-                                .padding(.top, 10)
-                        }
-                        
-                        if let redditUrl = game.reddit_url, let url = URL(string: redditUrl) {
-                            Link("Reddit Discussion", destination: url)
-                                .font(.headline)
-                                .padding(.top, 10)
-                        }
+                        .padding(.horizontal)
                         
                         Spacer()
                         
@@ -100,10 +117,17 @@ struct GameDetailView: View {
                                 favoriteViewModel.addGameToFavorites(game: game)
                             }
                         }) {
-                            Image(systemName: favoriteViewModel.isFavorite(game: game) ? "heart.fill" : "heart")
-                                .resizable()
-                                .frame(width: 30, height: 30)
-                                .foregroundColor(.red)
+                            if favoriteViewModel.isFavorite(game: game) {
+                                Image(systemName: "heart.fill")
+                                    .resizable()
+                                    .frame(width: 30, height: 30)
+                                    .foregroundColor(.red)
+                            } else {
+                                Image(systemName: "heart")
+                                    .resizable()
+                                    .frame(width: 30, height: 30)
+                                    .foregroundColor(.red)
+                            }
                         }
                         .padding(.top, 10)
                         
@@ -112,6 +136,9 @@ struct GameDetailView: View {
                             .padding(.top, 10)
                     }
                     .padding()
+                    .background(LinearGradient(gradient: Gradient(colors: [Color(red: 0.12, green: 0.12, blue: 0.12), Color(red: 0.15, green: 0.26, blue: 0.37)]), startPoint: .top, endPoint: .bottom))
+                    .cornerRadius(15)
+                    .shadow(radius: 5)
                 }
             } else if let error = viewModel.error {
                 Text(error)
@@ -121,6 +148,9 @@ struct GameDetailView: View {
         .onAppear {
             viewModel.fetchGameDetails(gameId: gameId)
         }
+        .padding()
+        .background(LinearGradient(gradient: Gradient(colors: [Color(red: 0.12, green: 0.12, blue: 0.12), Color(red: 0.15, green: 0.26, blue: 0.37)]), startPoint: .top, endPoint: .bottom))
+        .edgesIgnoringSafeArea(.all)
     }
 }
 

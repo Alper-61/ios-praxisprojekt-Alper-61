@@ -44,7 +44,6 @@ struct GamesView: View {
                                 FilterView(viewModel: viewModel)
                             }
                         }
-                        
 
                         if let error = viewModel.error {
                             Text(error)
@@ -108,16 +107,8 @@ struct GamesView: View {
                                                 .foregroundColor(.gray)
                                         }
                                         Spacer()
-                                        Button(action: {
-                                            if favoriteViewModel.isFavorite(game: game) {
-                                                favoriteViewModel.removeGameFromFavorites(withId: game.rawID)
-                                            } else {
-                                                favoriteViewModel.addGameToFavorites(game: game)
-                                            }
-                                        }) {
-                                            Image(systemName: favoriteViewModel.isFavorite(game: game) ? "heart.fill" : "heart")
-                                                .foregroundColor(.red)
-                                        }
+                                        // Verwende eine lokale State-Variable, um den Favoritenstatus zu verfolgen
+                                        FavoriteButton(isFavourite: favoriteViewModel.isFavorite(game: game), game: game, favoriteViewModel: favoriteViewModel)
                                     }
                                     .padding(.vertical, 5)
                                     .background(
@@ -138,6 +129,14 @@ struct GamesView: View {
                     if let game = selectedGame {
                         GameDetailView(gameId: game.rawID)
                             .environmentObject(favoriteViewModel)
+                            .navigationBarTitleDisplayMode(.inline)
+                            .toolbar {
+                                ToolbarItem(placement: .principal) {
+                                    Text(game.name)
+                                        .font(.headline)
+                                        .foregroundColor(.white)
+                                }
+                            }
                     }
                 }
                 .onAppear {
@@ -164,8 +163,31 @@ struct GamesView: View {
                     Text("AnyGame")
                         .font(.largeTitle)
                         .fontWeight(.bold)
-                        .foregroundColor(.white) 
+                        .foregroundColor(.white)
                 }
+            }
+        }
+    }
+}
+
+struct FavoriteButton: View {
+    @State var isFavourite: Bool
+    var game: GamesResponse.Game
+    @ObservedObject var favoriteViewModel: FavoriteGameViewModel
+
+    var body: some View {
+        Button(action: {
+            if isFavourite {
+                favoriteViewModel.removeGameFromFavorites(withId: game.rawID)
+            } else {
+                favoriteViewModel.addGameToFavorites(game: game)
+            }
+            isFavourite.toggle()
+        }) {
+            VStack {
+                Image(systemName: isFavourite ? "suit.heart.fill" : "heart")
+                    .foregroundColor(.red)
+                    .font(.title)
             }
         }
     }

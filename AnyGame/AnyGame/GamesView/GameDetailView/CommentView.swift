@@ -4,9 +4,7 @@
 //
 //  Created by Alper Görler on 22.07.24.
 //
-
 import SwiftUI
-import FirebaseFirestore
 import FirebaseAuth
 
 struct CommentView: View {
@@ -17,6 +15,7 @@ struct CommentView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text("Kommentare")
+                .foregroundStyle(Color.white)
                 .font(.title2)
                 .padding(.bottom, 10)
             
@@ -25,8 +24,10 @@ struct CommentView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 
                 Button(action: {
-                    commentViewModel.addComment(gameId: gameId, text: commentText)
-                    commentText = ""
+                    if !commentText.isEmpty {
+                        commentViewModel.addComment(gameId: gameId, text: commentText)
+                        commentText = ""
+                    }
                 }) {
                     Text("Posten")
                         .padding(.horizontal)
@@ -36,6 +37,7 @@ struct CommentView: View {
                         .cornerRadius(5)
                 }
             }
+            .padding(.bottom, 10)
             
             List {
                 ForEach(commentViewModel.comments) { comment in
@@ -55,7 +57,7 @@ struct CommentView: View {
                         
                         if comment.userId == Auth.auth().currentUser?.uid {
                             Button(action: {
-                                commentViewModel.deleteComment(gameId: gameId, commentId: comment.id!)
+                                commentViewModel.deleteComment(gameId: gameId, commentId: comment.id ?? "")
                             }) {
                                 Text("Löschen")
                                     .foregroundColor(.red)

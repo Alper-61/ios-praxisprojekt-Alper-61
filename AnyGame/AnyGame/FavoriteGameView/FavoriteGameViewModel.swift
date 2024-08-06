@@ -27,6 +27,7 @@ class FavoriteGameViewModel: ObservableObject {
         do {
             try firebaseFirestore.collection("users").document(userId).collection("favorites").document(String(game.rawID)).setData(from: newFavoriteGame)
             print("Game added to favorites")
+            self.favoriteGames.append(newFavoriteGame) // Update local state
         } catch {
             print("Error adding game to favorites: \(error)")
         }
@@ -69,11 +70,21 @@ class FavoriteGameViewModel: ObservableObject {
         firebaseFirestore.collection("users").document(userId).collection("favorites").document(String(id)).delete { error in
             if let error = error {
                 print("Error removing game from favorites: \(error)")
+            } else {
+                self.favoriteGames.removeAll { $0.rawID == id } // Update local state
             }
         }
     }
     
     func isFavorite(game: GamesResponse.Game) -> Bool {
         return favoriteGames.contains { $0.rawID == game.rawID }
+    }
+    
+    func toggleFavoriteStatus(for game: GamesResponse.Game) {
+        if isFavorite(game: game) {
+            removeGameFromFavorites(withId: game.rawID)
+        } else {
+            addGameToFavorites(game: game)
+        }
     }
 }
