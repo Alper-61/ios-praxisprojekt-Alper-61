@@ -10,7 +10,7 @@ import SwiftUI
 struct AnswerSheet: View {
     @State private var answerText: String = ""
     @ObservedObject var viewModel: CommunityViewModel
-    var question: Question
+    @Binding var question: Question
     
     var body: some View {
         ZStack {
@@ -63,8 +63,11 @@ struct AnswerSheet: View {
     }
 }
 
+
 #Preview {
-    AnswerSheet(viewModel: CommunityViewModel(), question: Question(id: "1", userId: "1", userName: "User", text: "Testfrage", timestamp: Date(), imageUrl: nil, answers: [
+    @State var question = Question(id: "1", userId: "1", userName: "User", text: "Testfrage", timestamp: Date(), imageUrl: nil, answers: [
         Answer(id: "1", userId: "2", userName: "Antworter", text: "Das ist eine Antwort", timestamp: Date())
-    ]))
+    ])
+
+    return AnswerSheet(viewModel: CommunityViewModel(), question: $question)
 }

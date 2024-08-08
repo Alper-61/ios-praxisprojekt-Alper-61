@@ -5,6 +5,13 @@
 //  Created by Alper Görler on 17.07.24.
 //
 
+//
+//  FavoriteGameViewModel.swift
+//  AnyGame
+//
+//  Created by Alper Görler on 17.07.24.
+//
+
 import Foundation
 import FirebaseAuth
 import FirebaseFirestore

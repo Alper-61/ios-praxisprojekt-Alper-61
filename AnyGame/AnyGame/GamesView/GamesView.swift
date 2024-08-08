@@ -107,8 +107,7 @@ struct GamesView: View {
                                                 .foregroundColor(.gray)
                                         }
                                         Spacer()
-                                        // Verwende eine lokale State-Variable, um den Favoritenstatus zu verfolgen
-                                        FavoriteButton(isFavourite: favoriteViewModel.isFavorite(game: game), game: game, favoriteViewModel: favoriteViewModel)
+                                        
                                     }
                                     .padding(.vertical, 5)
                                     .background(
@@ -144,6 +143,7 @@ struct GamesView: View {
                 }
                 .searchable(text: $viewModel.keyword, prompt: "Search")
                 .autocorrectionDisabled(true)
+                .tint(.white)
                 .onSubmit(of: .search) {
                     viewModel.searchGames()
                     isSearching = true
@@ -165,29 +165,6 @@ struct GamesView: View {
                         .fontWeight(.bold)
                         .foregroundColor(.white)
                 }
-            }
-        }
-    }
-}
-
-struct FavoriteButton: View {
-    @State var isFavourite: Bool
-    var game: GamesResponse.Game
-    @ObservedObject var favoriteViewModel: FavoriteGameViewModel
-
-    var body: some View {
-        Button(action: {
-            if isFavourite {
-                favoriteViewModel.removeGameFromFavorites(withId: game.rawID)
-            } else {
-                favoriteViewModel.addGameToFavorites(game: game)
-            }
-            isFavourite.toggle()
-        }) {
-            VStack {
-                Image(systemName: isFavourite ? "suit.heart.fill" : "heart")
-                    .foregroundColor(.red)
-                    .font(.title)
             }
         }
     }

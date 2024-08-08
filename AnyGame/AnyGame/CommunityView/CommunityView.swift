@@ -11,7 +11,7 @@ import FirebaseAuth
 struct CommunityView: View {
     @StateObject private var viewModel = CommunityViewModel()
     @State private var showingAddQuestionSheet = false
-    @State private var selectedQuestion: Question? = nil
+    @State private var selectedQuestionIndex: Int? = nil
     
     var body: some View {
         NavigationStack {
@@ -46,16 +46,35 @@ struct CommunityView: View {
                     
                     ScrollView {
                         VStack(spacing: 20) {
-                            ForEach(viewModel.questions) { question in
+                            ForEach(viewModel.questions.indices, id: \.self) { index in
                                 VStack(alignment: .leading) {
-                                    if let imageUrl = question.imageUrl {
-                                        AsyncImage(url: URL(string: imageUrl)) { image in
-                                            image.resizable()
-                                                .aspectRatio(contentMode: .fill)
-                                                .frame(height: 200)
-                                                .clipped()
-                                        } placeholder: {
-                                            ProgressView()
+                                    let question = viewModel.questions[index]
+                                    
+                                    // Bild anzeigen, wenn imageUrl vorhanden ist
+                                    if let imageUrl = question.imageUrl, let url = URL(string: imageUrl) {
+                                        AsyncImage(url: url) { phase in
+                                            switch phase {
+                                            case .empty:
+                                                ProgressView()
+                                                    .frame(height: 200)
+                                            case .success(let image):
+                                                image.resizable()
+                                                    .aspectRatio(contentMode: .fill)
+                                                    .frame(height: 200)
+                                                    .clipped()
+                                            case .failure:
+                                                Image(systemName: "photo")
+                                                    .resizable()
+                                                    .aspectRatio(contentMode: .fit)
+                                                    .frame(height: 200)
+                                                    .foregroundColor(.gray)
+                                            @unknown default:
+                                                Image(systemName: "photo")
+                                                    .resizable()
+                                                    .aspectRatio(contentMode: .fit)
+                                                    .frame(height: 200)
+                                                    .foregroundColor(.gray)
+                                            }
                                         }
                                     }
                                     
@@ -75,7 +94,7 @@ struct CommunityView: View {
                                     
                                     HStack {
                                         Button(action: {
-                                            selectedQuestion = question
+                                            selectedQuestionIndex = index
                                         }) {
                                             Image(systemName: "message")
                                                 .foregroundColor(.blue)
@@ -89,9 +108,9 @@ struct CommunityView: View {
                                 .background(Color.white.opacity(0.1))
                                 .cornerRadius(15)
                                 .contextMenu {
-                                    if Auth.auth().currentUser?.uid == question.userId {
+                                    if Auth.auth().currentUser?.uid == viewModel.questions[index].userId {
                                         Button(role: .destructive) {
-                                            viewModel.deleteQuestion(question)
+                                            viewModel.deleteQuestion(viewModel.questions[index])
                                         } label: {
                                             Label("Löschen", systemImage: "trash")
                                         }
@@ -103,11 +122,16 @@ struct CommunityView: View {
                     }
                 }
             }
+            .sheet(isPresented: Binding<Bool>(
+                get: { selectedQuestionIndex != nil },
+                set: { if !$0 { selectedQuestionIndex = nil } }
+            )) {
+                if let selectedQuestionIndex = selectedQuestionIndex {
+                    AnswerSheet(viewModel: viewModel, question: $viewModel.questions[selectedQuestionIndex])
+                }
+            }
             .sheet(isPresented: $showingAddQuestionSheet) {
                 AddQuestionView(viewModel: viewModel)
-            }
-            .sheet(item: $selectedQuestion) { question in
-                AnswerSheet(viewModel: viewModel, question: question)
             }
             .onAppear {
                 viewModel.fetchQuestions()

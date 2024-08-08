@@ -5,7 +5,6 @@
 //  Created by Alper Görler on 22.07.24.
 //
 
-import SwiftUI
 import FirebaseFirestore
 import FirebaseStorage
 import FirebaseAuth
@@ -145,7 +144,6 @@ class CommunityViewModel: ObservableObject {
             updatedAnswer.id = documentRef.documentID
             if let index = questions.firstIndex(where: { $0.id == questionId }) {
                 questions[index].answers.insert(updatedAnswer, at: 0) // Füge die Antwort oben hinzu
-                questions[index] = questions[index] // Aktualisiere die Frage
             }
         } catch {
             print("Error adding answer: \(error)")
