@@ -142,6 +142,7 @@ struct GamesView: View {
                     viewModel.fetchGames()
                 }
                 .searchable(text: $viewModel.keyword, prompt: "Search")
+
                 .autocorrectionDisabled(true)
                 .tint(.white)
                 .onSubmit(of: .search) {

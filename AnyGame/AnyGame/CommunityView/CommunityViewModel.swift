@@ -57,9 +57,11 @@ class CommunityViewModel: ObservableObject {
             uploadImage(image: selectedImage) { url in
                 newQuestion.imageUrl = url?.absoluteString
                 self.saveQuestionToFirestore(newQuestion)
+                self.fetchQuestions()
             }
         } else {
             saveQuestionToFirestore(newQuestion)
+            self.fetchQuestions()
         }
     }
     

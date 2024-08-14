@@ -46,9 +46,9 @@ struct CommunityView: View {
                     
                     ScrollView {
                         VStack(spacing: 20) {
-                            ForEach(viewModel.questions.indices, id: \.self) { index in
+                            ForEach(viewModel.questions, id: \.id) { question in
                                 VStack(alignment: .leading) {
-                                    let question = viewModel.questions[index]
+//                                    let question = viewModel.questions[index]
                                     
                                     // Bild anzeigen, wenn imageUrl vorhanden ist
                                     if let imageUrl = question.imageUrl, let url = URL(string: imageUrl) {
@@ -94,7 +94,8 @@ struct CommunityView: View {
                                     
                                     HStack {
                                         Button(action: {
-                                            selectedQuestionIndex = index
+                                            // resimler karışık geliyordu id değerleri eşit gelsin diye böyle bir kod yazdım
+                                            selectedQuestionIndex =  viewModel.questions.firstIndex(where: { $0.id == question.id })
                                         }) {
                                             Image(systemName: "message")
                                                 .foregroundColor(.blue)
@@ -108,9 +109,9 @@ struct CommunityView: View {
                                 .background(Color.white.opacity(0.1))
                                 .cornerRadius(15)
                                 .contextMenu {
-                                    if Auth.auth().currentUser?.uid == viewModel.questions[index].userId {
+                                    if Auth.auth().currentUser?.uid == question.userId {
                                         Button(role: .destructive) {
-                                            viewModel.deleteQuestion(viewModel.questions[index])
+                                            viewModel.deleteQuestion(question)
                                         } label: {
                                             Label("Löschen", systemImage: "trash")
                                         }
@@ -137,6 +138,8 @@ struct CommunityView: View {
                 viewModel.fetchQuestions()
             }
         }
+        .padding(.bottom, 20)
+        .background(LinearGradient(gradient: Gradient(colors: [Color(red: 0.12, green: 0.12, blue: 0.12), Color(red: 0.15, green: 0.26, blue: 0.37)]), startPoint: .top, endPoint: .bottom))
     }
 }
 

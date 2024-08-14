@@ -95,6 +95,16 @@ class LoginViewModel : ObservableObject {
         let newFireUser = FireUser(id: id, name: name, nachname: nachname , email: email)
         do {
             try self.firebaseFirestore.collection("users").document(id).setData(from: newFireUser)
+            if let currentUser = Auth.auth().currentUser?.createProfileChangeRequest() {
+                currentUser.displayName = newFireUser.name
+                currentUser.commitChanges(completion: {error in
+                    if let error = error {
+                        print(error)
+                    } else {
+                        print("DisplayName changed")
+                    }
+                })
+            }
         } catch {
             print("Error saving user in firestore: \(error)")
         }

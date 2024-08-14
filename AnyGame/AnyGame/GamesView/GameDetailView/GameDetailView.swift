@@ -19,6 +19,7 @@ struct GameDetailView: View {
                     .progressViewStyle(CircularProgressViewStyle(tint: .white))
                     .scaleEffect(1.5)
             } else if let game = viewModel.game {
+                
                 ScrollView {
                     VStack(alignment: .leading) {
                         if let imageUrlString = game.background_image, let imageUrl = URL(string: imageUrlString) {
@@ -94,7 +95,7 @@ struct GameDetailView: View {
                             }
                             
                             if let description = game.description {
-                                Text(description)
+                                Text(description.removingHTMLTags())
                                     .padding(.top, 10)
                                     .foregroundColor(.white)
                             }
@@ -112,8 +113,11 @@ struct GameDetailView: View {
                         
                         Button(action: {
                             if favoriteViewModel.isFavorite(game: game) {
+                                print(favoriteViewModel.isFavorite(game: game),"silerken")
                                 favoriteViewModel.removeGameFromFavorites(withId: game.rawID)
                             } else {
+                                print(favoriteViewModel.isFavorite(game: game),"eklerken")
+
                                 favoriteViewModel.addGameToFavorites(game: game)
                             }
                         }) {
@@ -135,7 +139,7 @@ struct GameDetailView: View {
                         CommentView(gameId: gameId)
                             .padding(.top, 10)
                     }
-                    .padding()
+                    .padding(.bottom, 75)
                     .background(LinearGradient(gradient: Gradient(colors: [Color(red: 0.12, green: 0.12, blue: 0.12), Color(red: 0.15, green: 0.26, blue: 0.37)]), startPoint: .top, endPoint: .bottom))
                     .cornerRadius(15)
                     .shadow(radius: 5)
@@ -146,11 +150,13 @@ struct GameDetailView: View {
             }
         }
         .onAppear {
+            favoriteViewModel.fetchFavoriteGames()
             viewModel.fetchGameDetails(gameId: gameId)
+            print(favoriteViewModel.favoriteGames)
         }
         .padding()
         .background(LinearGradient(gradient: Gradient(colors: [Color(red: 0.12, green: 0.12, blue: 0.12), Color(red: 0.15, green: 0.26, blue: 0.37)]), startPoint: .top, endPoint: .bottom))
-        .edgesIgnoringSafeArea(.all)
+//        .edgesIgnoringSafeArea(.all)
     }
 }
 

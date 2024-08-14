@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct AddQuestionView: View {
     @ObservedObject var viewModel: CommunityViewModel
     @Environment(\.dismiss) var dismiss

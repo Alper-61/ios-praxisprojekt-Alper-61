@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		860C6F662C6D232B00E59984 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860C6F652C6D232B00E59984 /* String+Extensions.swift */; };
 		8684AC8F2C40953400219AAB /* GamesApiRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8684AC8E2C40953400219AAB /* GamesApiRepository.swift */; };
 		8684AC912C40955200219AAB /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8684AC902C40955200219AAB /* ApiKeys.swift */; };
 		8684AC932C409CA100219AAB /* GamesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8684AC922C409CA100219AAB /* GamesResponse.swift */; };
@@ -70,6 +71,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		860C6F652C6D232B00E59984 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		8684AC8E2C40953400219AAB /* GamesApiRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesApiRepository.swift; sourceTree = "<group>"; };
 		8684AC902C40955200219AAB /* ApiKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
 		8684AC922C409CA100219AAB /* GamesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesResponse.swift; sourceTree = "<group>"; };
@@ -145,6 +147,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		860C6F672C6D236900E59984 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				860C6F652C6D232B00E59984 /* String+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		8684AC942C409D2400219AAB /* GamesView */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +217,7 @@
 		86D1015E2C32B91D009D8BA3 /* AnyGame */ = {
 			isa = PBXGroup;
 			children = (
+				860C6F672C6D236900E59984 /* Extensions */,
 				8684ACB32C4E81BD00219AAB /* CommunityView */,
 				8684AC9E2C484A8300219AAB /* FavoriteGameView */,
 				8684AC942C409D2400219AAB /* GamesView */,
@@ -369,6 +380,7 @@
 				86D101B82C3C146F009D8BA3 /* SettingsView.swift in Sources */,
 				8684ACC22C5D3A0300219AAB /* Question.swift in Sources */,
 				8684ACAC2C48571900219AAB /* GameDetailViewModel.swift in Sources */,
+				860C6F662C6D232B00E59984 /* String+Extensions.swift in Sources */,
 				8684ACAA2C4850F800219AAB /* FavoriteGameView.swift in Sources */,
 				8684AC9D2C4133E000219AAB /* GameDetailView.swift in Sources */,
 				8684AC982C409E9D00219AAB /* GamesView.swift in Sources */,

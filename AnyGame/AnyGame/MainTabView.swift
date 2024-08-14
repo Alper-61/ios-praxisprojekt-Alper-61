@@ -15,7 +15,7 @@ struct MainTabView: View {
         tabBarAppearance.configureWithOpaqueBackground()
         
         // Setze die Hintergrundfarbe der TabBar auf die gleiche Farbe wie deine Views
-        tabBarAppearance.backgroundColor = UIColor(Color(.systemBackground))
+        tabBarAppearance.backgroundColor = UIColor(Color(.clear))
         
         // Farbe der inaktiven TabItems (nicht ausgewählt)
         tabBarAppearance.stackedLayoutAppearance.normal.iconColor = UIColor.white
@@ -24,8 +24,15 @@ struct MainTabView: View {
         // Farbe der aktiven TabItems (ausgewählt)
         tabBarAppearance.stackedLayoutAppearance.selected.iconColor = UIColor.systemPink
         tabBarAppearance.stackedLayoutAppearance.selected.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemPink]
-
+        
         UITabBar.appearance().standardAppearance = tabBarAppearance
+        
+        UISearchBar.appearance().barTintColor = .white
+        if let textField = UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]) as? UITextField {
+            textField.backgroundColor = .white
+            textField.textColor = .black
+            textField.tintColor = .black // Cursor rengini siyah yapar
+        }
         
     }
     
@@ -35,7 +42,7 @@ struct MainTabView: View {
                 .tabItem {
                     Label("Games", systemImage: "gamecontroller")
                 }
-
+            
             FavoriteGameView()
                 .tabItem {
                     Label("Favorites", systemImage: "heart.fill")
@@ -45,7 +52,7 @@ struct MainTabView: View {
                 .tabItem {
                     Label("Community", systemImage: "person.3.fill")
                 }
-
+            
             SettingsView()
                 .tabItem {
                     Label("Settings", systemImage: "gearshape.fill")
