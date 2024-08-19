@@ -4,6 +4,7 @@
 //
 //  Created by Alper Görler on 22.07.24.
 //
+
 import SwiftUI
 import FirebaseAuth
 
@@ -39,33 +40,50 @@ struct CommentView: View {
             }
             .padding(.bottom, 10)
             
-            List {
-                ForEach(commentViewModel.comments) { comment in
-                    VStack(alignment: .leading) {
-                        HStack {
-                            Text(comment.userName)
-                                .font(.headline)
-                            Spacer()
-                            if comment.userId == Auth.auth().currentUser?.uid {
-                                Text("Du")
-                                    .font(.caption)
-                                    .foregroundColor(.gray)
+            ScrollViewReader { proxy in
+                ScrollView {
+                    LazyVStack {
+                        ForEach(commentViewModel.comments.reversed(), id: \.id) { comment in
+                            VStack(alignment: .leading) {
+                                HStack {
+                                    Text(comment.userName)
+                                        .font(.headline)
+                                        .foregroundColor(.white)
+                                    Spacer()
+                                    if comment.userId == Auth.auth().currentUser?.uid {
+                                        Text("Du")
+                                            .font(.caption)
+                                            .foregroundColor(.gray)
+                                    }
+                                }
+                                Text(comment.text)
+                                    .font(.body)
+                                    .foregroundColor(.white)
+                                
+                                if comment.userId == Auth.auth().currentUser?.uid {
+                                    Button(action: {
+                                        commentViewModel.deleteComment(gameId: gameId, commentId: comment.id ?? "")
+                                    }) {
+                                        Text("Löschen")
+                                            .foregroundColor(.red)
+                                            .font(.caption)
+                                    }
+                                }
                             }
+                            .padding(.vertical, 5)
+                            
+                            Divider()
+                                .background(Color.white.opacity(0.5))
                         }
-                        Text(comment.text)
-                            .font(.body)
-                        
-                        if comment.userId == Auth.auth().currentUser?.uid {
-                            Button(action: {
-                                commentViewModel.deleteComment(gameId: gameId, commentId: comment.id ?? "")
-                            }) {
-                                Text("Löschen")
-                                    .foregroundColor(.red)
-                                    .font(.caption)
+                    }
+                    .padding()
+                    .onChange(of: commentViewModel.comments) {
+                        withAnimation {
+                            if let lastCommentId = commentViewModel.comments.last?.id {
+                                proxy.scrollTo(lastCommentId, anchor: .bottom)
                             }
                         }
                     }
-                    .padding(.vertical, 5)
                 }
             }
         }

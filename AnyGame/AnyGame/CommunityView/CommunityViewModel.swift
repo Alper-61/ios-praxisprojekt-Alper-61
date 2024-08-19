@@ -151,4 +151,17 @@ class CommunityViewModel: ObservableObject {
             print("Error adding answer: \(error)")
         }
     }
+    
+    func deleteAnswer(_ answer: Answer, from question: Question) {
+        guard let questionId = question.id, let answerId = answer.id else { return }
+        db.collection("questions").document(questionId).collection("answers").document(answerId).delete { error in
+            if let error = error {
+                print("Error deleting answer: \(error)")
+            } else {
+                if let questionIndex = self.questions.firstIndex(where: { $0.id == questionId }) {
+                    self.questions[questionIndex].answers.removeAll { $0.id == answerId }
+                }
+            }
+        }
+    }
 }

@@ -18,7 +18,6 @@ struct SettingsView: View {
 
     var body: some View {
         ZStack {
-            // Hintergrund mit Farbverlauf
             LinearGradient(
                 gradient: Gradient(
                     stops: [
@@ -121,7 +120,6 @@ struct SettingsView: View {
                 Button("Speichern") {
                     if let userId = loginViewModel.user?.id {
                         loginViewModel.updateFirestoreUser(id: userId, name: name, nachname: nachname, email: email)
-                        loginViewModel.changePassword(currentPassword: currentPassword, newPassword: newPassword, confirmPassword: confirmPassword)
                     }
                 }
                 .frame(maxWidth: .infinity)

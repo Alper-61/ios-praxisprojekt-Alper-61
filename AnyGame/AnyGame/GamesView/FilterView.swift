@@ -97,6 +97,7 @@ struct FilterView: View {
                     viewModel.applyFilters()
                 }) {
                     Text("Apply Filters")
+                        .foregroundStyle(Color.red)
                 }
             }
             .navigationTitle("Filter")

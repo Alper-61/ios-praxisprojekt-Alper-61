@@ -6,13 +6,17 @@
 //
 
 import Foundation
-import FirebaseFirestore
-import FirebaseAuth
+import FirebaseFirestoreSwift
 
-struct Comment: Identifiable, Codable {
+struct Comment: Identifiable, Codable, Equatable {
     @DocumentID var id: String?
     let userId: String
     let userName: String
     let text: String
     let timestamp: Date
+
+    // Equatable-Konformität
+    static func == (lhs: Comment, rhs: Comment) -> Bool {
+        return lhs.id == rhs.id
+    }
 }

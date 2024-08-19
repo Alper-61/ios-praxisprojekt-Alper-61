@@ -41,7 +41,6 @@ struct RegistrierenView: View {
                     .foregroundColor(Color.white)
                     .padding(.bottom, 20)
                 
-                
                 ZStack(alignment: .leading) {
                     if name.isEmpty {
                         Text("Name")
@@ -53,6 +52,7 @@ struct RegistrierenView: View {
                         .background(RoundedRectangle(cornerRadius: 15).stroke(Color.white, lineWidth: 1))
                         .foregroundColor(.white)
                 }
+                
                 ZStack(alignment: .leading) {
                     if nachname.isEmpty {
                         Text("Nachname")
@@ -64,7 +64,6 @@ struct RegistrierenView: View {
                         .background(RoundedRectangle(cornerRadius: 15).stroke(Color.white, lineWidth: 1))
                         .foregroundColor(.white)
                 }
-                
                 
                 ZStack(alignment: .leading) {
                     if email.isEmpty {
@@ -86,6 +85,8 @@ struct RegistrierenView: View {
                     }
                     SecureField("", text: $password)
                         .padding()
+                        .disableAutocorrection(true) // Disable password suggestions
+                        .textContentType(.oneTimeCode) // Prevent auto-suggested passwords
                         .background(RoundedRectangle(cornerRadius: 15).stroke(Color.white, lineWidth: 1))
                         .foregroundColor(.white)
                 }
@@ -98,6 +99,8 @@ struct RegistrierenView: View {
                     }
                     SecureField("", text: $passwordCheck)
                         .padding()
+                        .disableAutocorrection(true)
+                        .textContentType(.oneTimeCode)
                         .background(RoundedRectangle(cornerRadius: 15).stroke(Color.white, lineWidth: 1))
                         .foregroundColor(.white)
                 }
@@ -118,8 +121,6 @@ struct RegistrierenView: View {
             Spacer()
         }
     }
-    
-    // MARK: Functions -
 }
 
 #Preview {

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct AnswerSheet: View {
     @State private var answerText: String = ""
@@ -23,17 +24,38 @@ struct AnswerSheet: View {
             
             VStack {
                 ScrollView {
-                    VStack(spacing: 10) {
+                    LazyVStack(spacing: 10) {
                         ForEach(question.answers) { answer in
                             VStack(alignment: .leading) {
-                                Text(answer.userName)
-                                    .font(.headline)
-                                    .foregroundColor(.white)
+                                HStack {
+                                    Text(answer.userName)
+                                        .font(.headline)
+                                        .foregroundStyle(.blue) // Benutzername in Weiß
+                                    Spacer()
+                                    if answer.userId == Auth.auth().currentUser?.uid {
+                                        Text("Du")
+                                            .font(.caption)
+                                            .foregroundStyle(.gray)
+                                    }
+                                }
                                 Text(answer.text)
                                     .font(.body)
-                                    .foregroundColor(.gray)
+                                    .foregroundStyle(.white) // Antworttext in Weiß
+                                
+                                if answer.userId == Auth.auth().currentUser?.uid {
+                                    Button(action: {
+                                        viewModel.deleteAnswer(answer, from: question)
+                                    }) {
+                                        Text("Löschen")
+                                            .foregroundStyle(.red)
+                                            .font(.caption)
+                                    }
+                                }
                             }
                             .padding(.vertical, 5)
+                            
+                            Divider() // Trennlinie zwischen den Antworten
+                                .background(Color.white.opacity(0.5)) // Divider in weißer Farbe mit Transparenz
                         }
                     }
                     .padding()
@@ -62,7 +84,6 @@ struct AnswerSheet: View {
         }
     }
 }
-
 
 #Preview {
     @State var question = Question(id: "1", userId: "1", userName: "User", text: "Testfrage", timestamp: Date(), imageUrl: nil, answers: [

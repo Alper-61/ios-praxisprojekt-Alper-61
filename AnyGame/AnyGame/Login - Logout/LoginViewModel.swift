@@ -120,13 +120,25 @@ class LoginViewModel : ObservableObject {
     }
     
     func updateFirestoreUser(id: String, name: String, nachname: String, email: String) {
-        let updatedFireUser = FireUser(id: id, name: name, nachname: nachname, email: email)
-        do {
-            try self.firebaseFirestore.collection("users").document(id).setData(from: updatedFireUser)
-        } catch {
-            print("Error updating user in firestore: \(error)")
+            let updatedFireUser = FireUser(id: id, name: name, nachname: nachname, email: email)
+            do {
+                try self.firebaseFirestore.collection("users").document(id).setData(from: updatedFireUser)
+                
+                if let currentUser = Auth.auth().currentUser?.createProfileChangeRequest() {
+                    currentUser.displayName = name // Update Firebase Auth DisplayName
+                    currentUser.commitChanges { error in
+                        if let error = error {
+                            print("Error updating Firebase Auth user: \(error)")
+                        } else {
+                            print("Firebase Auth user updated successfully")
+                            self.fetchFirestoreUser(withId: id) // Refresh local user data
+                        }
+                    }
+                }
+            } catch {
+                print("Error updating user in firestore: \(error)")
+            }
         }
-    }
     
     func changePassword(currentPassword: String, newPassword: String, confirmPassword: String) {
         guard newPassword == confirmPassword else {
