@@ -48,7 +48,7 @@ struct CommunityView: View {
                         VStack(spacing: 20) {
                             ForEach(viewModel.questions, id: \.id) { question in
                                 VStack(alignment: .leading) {
-//                                    let question = viewModel.questions[index]
+                                    //                                    let question = viewModel.questions[index]
                                     
                                     // Bild anzeigen, wenn imageUrl vorhanden ist
                                     if let imageUrl = question.imageUrl, let url = URL(string: imageUrl) {
@@ -94,7 +94,6 @@ struct CommunityView: View {
                                     
                                     HStack {
                                         Button(action: {
-                                            // resimler karışık geliyordu id değerleri eşit gelsin diye böyle bir kod yazdım
                                             selectedQuestionIndex =  viewModel.questions.firstIndex(where: { $0.id == question.id })
                                         }) {
                                             Image(systemName: "message")

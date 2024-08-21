@@ -9,12 +9,13 @@ import FirebaseFirestore
 import FirebaseStorage
 import FirebaseAuth
 
+@MainActor
 class CommunityViewModel: ObservableObject {
     @Published var questions: [Question] = []
     @Published var selectedImage: UIImage? = nil
     @Published var isLoading = false
     @Published var error: String?
-
+    
     private let db = Firestore.firestore()
     private let storage = Storage.storage()
 
@@ -110,7 +111,7 @@ class CommunityViewModel: ObservableObject {
             }
         }
     }
-
+    
     func fetchAnswers(for question: Question, completion: @escaping ([Answer]) -> Void) {
         guard let questionId = question.id else { return }
         db.collection("questions").document(questionId).collection("answers")

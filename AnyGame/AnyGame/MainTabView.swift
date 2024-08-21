@@ -28,11 +28,11 @@ struct MainTabView: View {
         UITabBar.appearance().standardAppearance = tabBarAppearance
         
         UISearchBar.appearance().barTintColor = .white
-        if let textField = UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]) as? UITextField {
-            textField.backgroundColor = .white
-            textField.textColor = .black
-            textField.tintColor = .black // Cursor rengini siyah yapar
-        }
+        let textField = UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]) as UITextField
+        textField.backgroundColor = .white
+        textField.textColor = .black
+        textField.tintColor = .black // Cursor on black
+        
         
     }
     

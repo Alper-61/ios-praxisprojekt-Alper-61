@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct LoginView: View {
-    @EnvironmentObject var viewModel : LoginViewModel
-    // MARK: VARIABLES -
+    @EnvironmentObject var viewModel: LoginViewModel
+    // MARK: - Variables
     @State private var email = ""
     @State private var password = ""
-    
+    @State private var showAlert = false
+
     var body: some View {
         ZStack {
             // Hintergrund mit Farbverlauf
@@ -78,6 +79,16 @@ struct LoginView: View {
                 .foregroundColor(.white)
             }
             .padding()
+        }
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Fehler"),
+                message: Text(viewModel.loginError ?? "Unbekannter Fehler"),
+                dismissButton: .default(Text("OK"))
+            )
+        }
+        .onChange(of: viewModel.loginError) {
+            showAlert = true
         }
     }
 }
