@@ -16,7 +16,6 @@ Egal ob du einfach nur informiert bleiben oder deine Lieblingsspiele im Auge beh
 </p>
 
 ## Features
-Hier kommen alle geplanten Features der App rein mit dem Status, ob es bereits umgesetzt wurde.
 
 - [x] **LoginView**: Ermöglicht Benutzern die Anmeldung über Firebase-Authentifizierung.
 - [x] **RegisterView**: Ermöglicht Benutzern die Registrierung über Firebase-Authentifizierung.
