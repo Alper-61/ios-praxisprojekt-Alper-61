@@ -8,11 +8,11 @@ Egal ob du einfach nur informiert bleiben oder deine Lieblingsspiele im Auge beh
 
 ## Geplantes Design
 <p>
-  <img src="./img/LogIn.png" width="200">
-  <img src="./img/Games.png" width="200">
-  <img src="./img/Details.png" width="200">
-  <img src="./img/Favoriten.png" width="200">
-  <img src="./img/Community.png" width="200">
+  <img src="./img/1.png" width="200">
+  <img src="./img/2.png" width="200">
+  <img src="./img/3.png" width="200">
+  <img src="./img/4.png" width="200">
+  <img src="./img/5.png" width="200">
 </p>
 
 ## Features
