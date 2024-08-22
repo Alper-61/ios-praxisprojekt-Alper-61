@@ -18,13 +18,13 @@ Egal ob du einfach nur informiert bleiben oder deine Lieblingsspiele im Auge beh
 ## Features
 Hier kommen alle geplanten Features der App rein mit dem Status, ob es bereits umgesetzt wurde.
 
-- [ ] **LoginView**: Ermöglicht Benutzern die Anmeldung über Firebase-Authentifizierung.
-- [ ] **RegisterView**: Ermöglicht Benutzern die Registrierung über Firebase-Authentifizierung.
-- [ ] **GameView**: Zeigt eine Übersicht aller Spiele-News in einer Liste und im oberen Bereich einige hervorgehobene Spiele, durch die horizontal gescrollt werden kann. Außerdem enthält sie eine Such- und Filterfunktion.
-- [ ] **GameDetailView**: Zeigt detaillierte Informationen zu einem ausgewählten Spiel an, einschließlich Nachrichten und Beschreibungen, und ermöglicht es, das Spiel zu favorisieren.
-- [ ] **FavoriteGameView**: Zeigt die favorisierten Spiele an und ermöglicht das Löschen von Favoriten.
-- [ ] **CommunityView**: Ermöglicht Benutzern, sich untereinander auszutauschen, Kommentare zu Spielen und Nachrichten zu hinterlassen und Diskussionen zu führen.
-- [ ] **ProfileView**: Zeigt das Profil des Benutzers an, ermöglicht das Bearbeiten persönlicher Informationen und das Ausloggen.
+- [x] **LoginView**: Ermöglicht Benutzern die Anmeldung über Firebase-Authentifizierung.
+- [x] **RegisterView**: Ermöglicht Benutzern die Registrierung über Firebase-Authentifizierung.
+- [x] **GameView**: Zeigt eine Übersicht aller Spiele-News in einer Liste und im oberen Bereich einige hervorgehobene Spiele, durch die horizontal gescrollt werden kann. Außerdem enthält sie eine Such- und Filterfunktion.
+- [x] **GameDetailView**: Zeigt detaillierte Informationen zu einem ausgewählten Spiel an, einschließlich Nachrichten und Beschreibungen, und ermöglicht es, das Spiel zu favorisieren.
+- [x] **FavoriteGameView**: Zeigt die favorisierten Spiele an und ermöglicht das Löschen von Favoriten.
+- [x] **CommunityView**: Ermöglicht Benutzern, sich untereinander auszutauschen, Kommentare zu Spielen und Nachrichten zu hinterlassen und Diskussionen zu führen.
+- [x] **SettingsView**: Zeigt das Profil des Benutzers an, ermöglicht das Bearbeiten persönlicher Informationen und das Ausloggen.
 
 ## Technischer Aufbau
 
@@ -38,7 +38,6 @@ Das Projekt folgt dem MVVM (Model-View-ViewModel) Architekturprinzip. Die Haupto
 
 #### Datenspeicherung
 - **Firebase**: Für die Authentifizierung und Speicherung von Benutzerinformationen.
-- **Core Data**: Für das lokale Speichern von favorisierten Spielen und anderen persistenten Daten.
 
 #### API Calls
 - **RAWG API**: (https://api.rawg.io/docs/?format=openapi).
