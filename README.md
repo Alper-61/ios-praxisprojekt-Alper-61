@@ -11,7 +11,6 @@ Egal ob du einfach nur informiert bleiben oder deine Lieblingsspiele im Auge beh
   <img src="./img/1.png" width="200">
   <img src="./img/2.png" width="200">
   <img src="./img/3.png" width="200">
-  <img src="./img/4.png" width="200">
   <img src="./img/5.png" width="200">
   <img src="./img/6.png" width="200">
   <img src="./img/7.png" width="200">
