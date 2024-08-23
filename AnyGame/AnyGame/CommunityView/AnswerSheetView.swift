@@ -63,7 +63,7 @@ struct AnswerSheet: View {
                 .background(Color.clear)
                 
                 HStack {
-                    TextField("Antwort eingeben...", text: $answerText)
+                    TextField("Kommentieren...", text: $answerText)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .foregroundColor(.black)
                         .background(Color.black.opacity(0.2))

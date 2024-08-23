@@ -98,7 +98,7 @@ struct CommunityView: View {
                                         }) {
                                             Image(systemName: "message")
                                                 .foregroundColor(.blue)
-                                            Text("Antworten")
+                                            Text("Alle Kommentare Ansehen")
                                                 .foregroundColor(.blue)
                                         }
                                         .padding(.top, 5)

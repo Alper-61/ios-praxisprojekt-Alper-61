@@ -29,7 +29,7 @@ struct FavoriteGameView: View {
                 VStack {
                     // HStack mit dem Titel
                     HStack {
-                        Text("Favorite Games")
+                        Text("Favoriten")
                             .font(.largeTitle)
                             .fontWeight(.bold)
                             .foregroundColor(.white)
